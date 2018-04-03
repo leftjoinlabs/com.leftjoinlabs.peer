@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+
+<table>
+  <base>CRM/Peer</base>
+  <class>PeerCampaign</class>
+  <name>civicrm_peer_campaign</name>
+  <comment>A collection of peer pages that share a common goal and setup process</comment>
+  <add>1.0</add>
+  <log>true</log>
+
+  <field>
+    <name>id</name>
+    <type>int unsigned</type>
+    <required>true</required>
+    <comment>Unique PeerCampaign ID</comment>
+    <add>1.0</add>
+  </field>
+  <primaryKey>
+    <name>id</name>
+    <autoincrement>true</autoincrement>
+  </primaryKey>
+
+  <field>
+    <name>target_entity_table</name>
+    <title>Target Entity Table</title>
+    <type>varchar</type>
+    <length>255</length>
+    <required>true</required>
+    <default>'civicrm_contribution_page'</default>
+    <comment>The type of entity that this campaign's peer pages are trying to get people to interact with</comment>
+    <pseudoconstant>
+      <callback>CRM_Peer_BAO_PeerCampaign::entityTableOptions</callback>
+    </pseudoconstant>
+    <add>1.0</add>
+  </field>
+  <field>
+    <name>target_entity_id</name>
+    <title>Target Entity ID</title>
+    <type>int unsigned</type>
+    <required>true</required>
+    <comment>The ID for the entity that this campaign's peer pages are trying to get people to interact with</comment>
+    <add>1.0</add>
+  </field>
+  <dynamicForeignKey>
+    <idColumn>target_entity_id</idColumn>
+    <typeColumn>target_entity_table</typeColumn>
+    <add>1.0</add>
+  </dynamicForeignKey>
+  <index>
+    <name>index_target_entity_table_target_entity_id</name>
+    <fieldName>target_entity_table</fieldName>
+    <fieldName>target_entity_id</fieldName>
+    <unique>true</unique>
+  </index>
+
+  <field>
+    <name>total_function</name>
+    <title>Total Function</title>
+    <type>varchar</type>
+    <length>255</length>
+    <required>true</required>
+    <comment>The function used to aggregate peer fulfillment records to compute a total for each page associated with this campaign</comment>
+    <pseudoconstant>
+      <callback>CRM_Peer_BAO_PeerCampaign::totalFunctionOptions</callback>
+    </pseudoconstant>
+    <add>1.0</add>
+    <html>
+      <type>Select</type>
+    </html>
+  </field>
+
+  <field>
+    <name>supporter_profile_id</name>
+    <title>Supporter Profile</title>
+    <type>int unsigned</type>
+    <comment>FK to civicrm_uf_group.id to set the profile used when creating a new peer page</comment>
+    <default>NULL</default>
+    <add>1.0</add>
+  </field>
+  <foreignKey>
+    <name>supporter_profile_id</name>
+    <table>civicrm_uf_group</table>
+    <key>id</key>
+    <add>1.0</add>
+    <onDelete>SET NULL</onDelete>
+  </foreignKey>
+
+  <field>
+    <name>is_active</name>
+    <title>Enabled?</title>
+    <type>boolean</type>
+    <comment>Is Peer Campaign Page Block enabled/active?</comment>
+    <default>1</default>
+    <add>1.0</add>
+  </field>
+  <index>
+    <name>index_is_active</name>
+    <fieldName>is_active</fieldName>
+  </index>
+
+</table>
