@@ -89,6 +89,7 @@
     <name>is_active</name>
     <title>Enabled?</title>
     <type>boolean</type>
+    <required>true</required>
     <comment>Is Peer Campaign Page Block enabled/active?</comment>
     <default>1</default>
     <add>1.0</add>

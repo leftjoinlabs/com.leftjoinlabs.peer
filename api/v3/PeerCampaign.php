@@ -10,7 +10,9 @@ use CRM_Peer_ExtensionUtil as E;
  * @see http://wiki.civicrm.org/confluence/display/CRMDOC/API+Architecture+Standards
  */
 function _civicrm_api3_peer_campaign_create_spec(&$spec) {
-  // $spec['some_parameter']['api.required'] = 1;
+  $spec['target_entity_table']['api.required'] = 1;
+  $spec['target_entity_id']['api.required'] = 1;
+  $spec['total_function']['api.required'] = 1;
 }
 
 /**
