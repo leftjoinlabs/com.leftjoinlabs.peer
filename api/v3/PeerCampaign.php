@@ -1,5 +1,6 @@
 <?php
 use CRM_Peer_ExtensionUtil as E;
+use CRM_Core_DAO_AllCoreTables as Tables;
 
 /**
  * PeerCampaign.create API specification (optional)
@@ -19,10 +20,20 @@ function _civicrm_api3_peer_campaign_create_spec(&$spec) {
  * PeerCampaign.create API
  *
  * @param array $params
+ *
  * @return array API result descriptor
- * @throws API_Exception
+ * @throws CiviCRM_API3_Exception|API_Exception
  */
 function civicrm_api3_peer_campaign_create($params) {
+  // Check to make sure target entity exists
+  $entityName = Tables::getBriefName(Tables::getClassForTable($params['target_entity_table']));
+  $targetEntity = civicrm_api3($entityName, 'get', [
+    'return' => ['id'],
+    'id' => $params['target_entity_id']
+  ]);
+  if ($targetEntity['count'] == 0) {
+    throw new \API_Exception('Unable to locate target entity', 'missing_target_entity');
+  }
   return _civicrm_api3_basic_create(_civicrm_api3_get_BAO(__FUNCTION__), $params);
 }
 

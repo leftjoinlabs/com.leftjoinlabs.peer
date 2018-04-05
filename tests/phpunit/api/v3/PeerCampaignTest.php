@@ -77,5 +77,16 @@ class api_v3_PeerCampaignTest extends \PHPUnit_Framework_TestCase implements Hea
     $this->assertEquals($params['total_function'], $result['total_function']);
   }
 
+  /**
+   * This should fail because the contribution page doesn't exist
+   */
+  public function testCreateFailsWithMissingTargetEntity() {
+    $this->callAPIFailure('PeerCampaign', 'create', [
+      'target_entity_table' => 'civicrm_contribution_page',
+      // Hopefully these's no contribution page with this ID in the test DB!
+      'target_entity_id' => 999999999,
+      'total_function' => 'sum',
+    ]);
+  }
 
 }
