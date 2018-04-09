@@ -84,7 +84,6 @@ CREATE TABLE `civicrm_peer_campaign` (
      `id` int unsigned NOT NULL AUTO_INCREMENT  COMMENT 'Unique PeerCampaign ID',
      `target_entity_table` varchar(255) NOT NULL  DEFAULT 'civicrm_contribution_page' COMMENT 'The type of entity that this campaign\'s peer pages are trying to get people to interact with',
      `target_entity_id` int unsigned NOT NULL   COMMENT 'The ID for the entity that this campaign\'s peer pages are trying to get people to interact with',
-     `total_function` varchar(255) NOT NULL   COMMENT 'The function used to aggregate peer fulfillment records to compute a total for each page associated with this campaign',
      `supporter_profile_id` int unsigned   DEFAULT NULL COMMENT 'FK to civicrm_uf_group.id to set the profile used when creating a new peer page',
      `is_active` tinyint NOT NULL  DEFAULT 1 COMMENT 'Is Peer Campaign Page Block enabled/active?' 
 ,

@@ -47,7 +47,6 @@ class api_v3_PeerCampaignTest extends \PHPUnit_Framework_TestCase implements Hea
     $this->callAPIFailure('PeerCampaign', 'create', [
       'target_entity_table' => 'civicrm_contact',
       'target_entity_id' => 1,
-      'total_function' => 'sum',
     ]);
   }
 
@@ -67,14 +66,12 @@ class api_v3_PeerCampaignTest extends \PHPUnit_Framework_TestCase implements Hea
     $params = [
       'target_entity_table' => 'civicrm_contribution_page',
       'target_entity_id' => $contributionPage['id'],
-      'total_function' => 'sum',
     ];
     $this->callApiSuccess('PeerCampaign', 'create', $params);
     $get = $this->callApiSuccess('PeerCampaign', 'get', $params);
     $result = array_values($get['values'])[0];
     $this->assertEquals($params['target_entity_table'], $result['target_entity_table']);
     $this->assertEquals($params['target_entity_id'], $result['target_entity_id']);
-    $this->assertEquals($params['total_function'], $result['total_function']);
   }
 
   /**
@@ -85,7 +82,6 @@ class api_v3_PeerCampaignTest extends \PHPUnit_Framework_TestCase implements Hea
       'target_entity_table' => 'civicrm_contribution_page',
       // Hopefully these's no contribution page with this ID in the test DB!
       'target_entity_id' => 999999999,
-      'total_function' => 'sum',
     ]);
   }
 

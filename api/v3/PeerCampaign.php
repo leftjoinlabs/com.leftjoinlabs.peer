@@ -13,7 +13,6 @@ use CRM_Core_DAO_AllCoreTables as Tables;
 function _civicrm_api3_peer_campaign_create_spec(&$spec) {
   $spec['target_entity_table']['api.required'] = 1;
   $spec['target_entity_id']['api.required'] = 1;
-  $spec['total_function']['api.required'] = 1;
 }
 
 /**
