@@ -24,6 +24,10 @@ class api_v3_PeerCampaignTest extends \PHPUnit_Framework_TestCase implements Hea
 
   use \Civi\Test\Api3TestTrait;
 
+  /**
+   * @return \Civi\Test\CiviEnvBuilder
+   * @throws \CRM_Extension_Exception_ParseException
+   */
   public function setUpHeadless() {
     // Civi\Test has many helpers, like install(), uninstall(), sql(), and sqlFile().
     // See: https://github.com/civicrm/org.civicrm.testapalooza/blob/master/civi-test.md

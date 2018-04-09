@@ -2,6 +2,66 @@
 
 require_once 'peer.civix.php';
 use CRM_Peer_ExtensionUtil as E;
+use Civi\Peer\PeerCampaign\FormModifiers\PetitionFormModifier;
+
+/**
+ * Implements hook_civicrm_buildForm().
+ *
+ * @param string $formName
+ * @param mixed $form
+ *
+ * @throws \HTML_QuickForm_Error
+ * @throws \CiviCRM_API3_Exception
+ */
+function peer_civicrm_buildForm($formName, &$form) {
+  if (($formName == 'CRM_Campaign_Form_Petition')) {
+    PetitionFormModifier::buildForm($form);
+  }
+}
+
+/**
+ * Implements hook_civicrm_postProcess().
+ *
+ * @param string $formName
+ * @param CRM_Core_Form $form
+ *
+ * @throws \CRM_Core_Exception
+ * @throws \CiviCRM_API3_Exception
+ */
+function peer_civicrm_postProcess($formName, &$form) {
+  if (($formName == 'CRM_Campaign_Form_Petition')) {
+    PetitionFormModifier::postProcess($form);
+  }
+}
+
+/**
+ * @param string $op
+ * @param string $objectName
+ * @param int $objectId
+ * @param mixed $objectRef
+ */
+function peer_civicrm_post($op, $objectName, $objectId, &$objectRef) {
+  if ($objectName = 'Survey') {
+    PetitionFormModifier::post($objectId);
+  }
+}
+
+/**
+ * Implements hook_civicrm_validateForm().
+ *
+ * @param string $formName
+ * @param array $fields
+ * @param array $files
+ * @param CRM_Core_Form $form
+ * @param array $errors
+ */
+function peer_civicrm_validateForm($formName, &$fields, &$files, &$form, &$errors) {
+  if (($formName == 'CRM_Campaign_Form_Petition')) {
+    PetitionFormModifier::validate($fields, $form, $errors);
+  }
+}
+
+// ============================== civix stubs ==================================
 
 /**
  * Implements hook_civicrm_config().
@@ -133,17 +193,6 @@ function peer_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
 function peer_civicrm_entityTypes(&$entityTypes) {
   _peer_civix_civicrm_entityTypes($entityTypes);
 }
-
-// --- Functions below this ship commented out. Uncomment as required. ---
-
-/**
- * Implements hook_civicrm_preProcess().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_preProcess
- *
-function peer_civicrm_preProcess($formName, &$form) {
-
-} // */
 
 /**
  * Implements hook_civicrm_navigationMenu().
