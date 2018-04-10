@@ -3,6 +3,20 @@
 require_once 'peer.civix.php';
 use CRM_Peer_ExtensionUtil as E;
 use Civi\Peer\PeerCampaign\FormModifiers\PetitionFormModifier;
+use Civi\Peer\PeerCampaign\FormModifiers\ContributionPageFormModifier;
+
+/**
+ * Implements hook_civicrm_tabset().
+ *
+ * @param string $tabsetName
+ * @param array $tabs
+ * @param array $context
+ */
+function peer_civicrm_tabset($tabsetName, &$tabs, $context) {
+  if ($tabsetName == 'civicrm/admin/contribute') {
+    ContributionPageFormModifier::tabset($tabs, $context);
+  }
+}
 
 /**
  * Implements hook_civicrm_buildForm().

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/admin/contribute/peerCampaign</path>
+    <page_callback>CRM_Peer_PeerCampaign_Form_ContributionPage</page_callback>
+    <title>Peer Campaign</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+</menu>
