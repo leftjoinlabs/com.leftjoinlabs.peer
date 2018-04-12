@@ -33,6 +33,7 @@
 
 SET FOREIGN_KEY_CHECKS=0;
 
+DROP TABLE IF EXISTS `civicrm_peer_page`;
 DROP TABLE IF EXISTS `civicrm_peer_campaign`;
 
 SET FOREIGN_KEY_CHECKS=1;

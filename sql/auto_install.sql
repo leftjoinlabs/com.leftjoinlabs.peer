@@ -62,6 +62,7 @@
 
 SET FOREIGN_KEY_CHECKS=0;
 
+DROP TABLE IF EXISTS `civicrm_peer_page`;
 DROP TABLE IF EXISTS `civicrm_peer_campaign`;
 
 SET FOREIGN_KEY_CHECKS=1;
@@ -98,6 +99,29 @@ CREATE TABLE `civicrm_peer_campaign` (
   )
   
 ,          CONSTRAINT FK_civicrm_peer_campaign_supporter_profile_id FOREIGN KEY (`supporter_profile_id`) REFERENCES `civicrm_uf_group`(`id`) ON DELETE SET NULL  
+)    ;
+
+-- /*******************************************************
+-- *
+-- * civicrm_peer_page
+-- *
+-- * A public page created by a supporter to promote an action on a peer-to-peer basis
+-- *
+-- *******************************************************/
+CREATE TABLE `civicrm_peer_page` (
+
+
+     `id` int unsigned NOT NULL AUTO_INCREMENT  COMMENT 'Unique PeerPage ID',
+     `peer_campaign_id` int unsigned NOT NULL   COMMENT 'FK to PeerCampaign',
+     `contact_id` int unsigned NOT NULL   COMMENT 'FK to Contact',
+     `title` varchar(255)   DEFAULT NULL ,
+     `body` text   DEFAULT NULL COMMENT 'Text written by the supporter to convince other people to click the button',
+     `goal_amount` decimal(20,2)   DEFAULT NULL COMMENT 'The thermometer value the supporter hopes to achieve' 
+,
+        PRIMARY KEY (`id`)
+ 
+ 
+,          CONSTRAINT FK_civicrm_peer_page_peer_campaign_id FOREIGN KEY (`peer_campaign_id`) REFERENCES `civicrm_peer_campaign`(`id`) ON DELETE CASCADE,          CONSTRAINT FK_civicrm_peer_page_contact_id FOREIGN KEY (`contact_id`) REFERENCES `civicrm_contact`(`id`) ON DELETE CASCADE  
 )    ;
 
  

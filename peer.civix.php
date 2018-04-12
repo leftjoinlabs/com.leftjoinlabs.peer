@@ -462,5 +462,11 @@ function _peer_civix_civicrm_entityTypes(&$entityTypes) {
       'class' => 'CRM_Peer_DAO_PeerCampaign',
       'table' => 'civicrm_peer_campaign',
     ),
+    'CRM_Peer_DAO_PeerPage' => 
+    array (
+      'name' => 'PeerPage',
+      'class' => 'CRM_Peer_DAO_PeerPage',
+      'table' => 'civicrm_peer_page',
+    ),
   ));
 }
