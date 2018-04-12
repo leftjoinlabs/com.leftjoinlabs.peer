@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/peer/page</path>
+    <page_callback>CRM_Peer_Page_PeerPage</page_callback>
+    <title>Peer Page</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+</menu>
