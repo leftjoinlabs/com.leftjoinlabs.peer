@@ -84,7 +84,7 @@ class api_v3_PeerCampaignTest extends \PHPUnit_Framework_TestCase implements Hea
   public function testCreateFailsWithMissingTargetEntity() {
     $this->callAPIFailure('PeerCampaign', 'create', [
       'target_entity_table' => 'civicrm_contribution_page',
-      // Hopefully these's no contribution page with this ID in the test DB!
+      // Hopefully there's no contribution page with this ID in the test DB!
       'target_entity_id' => 999999999,
     ]);
   }
