@@ -6,4 +6,10 @@
     <title>Peer Page</title>
     <access_arguments>access CiviCRM</access_arguments>
   </item>
+  <item>
+    <path>civicrm/peer/page/edit</path>
+    <page_callback>CRM_Peer_Form_PeerPage</page_callback>
+    <title>Peer Page</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
 </menu>
