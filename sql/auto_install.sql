@@ -115,7 +115,7 @@ CREATE TABLE `civicrm_peer_page` (
      `peer_campaign_id` int unsigned NOT NULL   COMMENT 'FK to PeerCampaign',
      `contact_id` int unsigned NOT NULL   COMMENT 'FK to Contact',
      `title` varchar(255)   DEFAULT NULL ,
-     `body` text   DEFAULT NULL COMMENT 'Text written by the supporter to convince other people to click the button',
+     `page_text` text   DEFAULT NULL COMMENT 'Rich text written by the supporter to convince other people to click the button',
      `goal_amount` decimal(20,2)   DEFAULT NULL COMMENT 'The thermometer value the supporter hopes to achieve' 
 ,
         PRIMARY KEY (`id`)

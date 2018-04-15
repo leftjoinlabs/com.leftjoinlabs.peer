@@ -102,8 +102,8 @@ class CRM_Peer_Form_PeerPage extends CRM_Core_Form {
     // Page title
     $this->add('text', 'title', E::ts('Title'), NULL, TRUE);
 
-    // Body
-    $this->add('wysiwyg', 'body', E::ts('Page Text'));
+    // Page text
+    $this->add('wysiwyg', 'page_text', E::ts('Page Text'));
 
     // Goal amount
     $this->add('text', 'goal_amount', E::ts('Goal'));
@@ -148,7 +148,7 @@ class CRM_Peer_Form_PeerPage extends CRM_Core_Form {
       'peer_campaign_id' => $formValues['peer_campaign_id'],
       'contact_id' => $formValues['contact_id'],
       'title' => $formValues['title'],
-      'body' => $formValues['body'],
+      'page_text' => $formValues['page_text'],
       'goal_amount' => $formValues['goal_amount'],
     ];
 

@@ -1,1 +1,1 @@
-{$peerPage.body}
+{$peerPage.page_text}
