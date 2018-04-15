@@ -111,6 +111,18 @@ class CRM_Peer_Form_PeerPage extends CRM_Core_Form {
     // Photo upload
     // TODO
 
+    $this->addButtons([
+      [
+        'type' => 'submit',
+        'name' => ts('Save'),
+        'isDefault' => TRUE,
+      ],
+      [
+        'type' => 'cancel',
+        'name' => ts('Cancel'),
+      ],
+    ]);
+
     // export form elements
     $this->assign('elementNames', $this->getRenderableElementNames());
     parent::buildQuickForm();
@@ -121,13 +133,14 @@ class CRM_Peer_Form_PeerPage extends CRM_Core_Form {
    *   Default values for the form.
    */
   public function setDefaultValues() {
-    if ($this->_action = Action::UPDATE) {
-      return $this->peerPage;
+    if ($this->_action != Action::UPDATE) {
+      return [];
     }
-    return [];
+    return $this->peerPage;
   }
 
   public function postProcess() {
+    $params = $this->controller->exportValues($this->_name);
 
     parent::postProcess();
   }
@@ -143,7 +156,7 @@ class CRM_Peer_Form_PeerPage extends CRM_Core_Form {
     // auto-rendered in the loop -- such as "qfKey" and "buttons".  These
     // items don't have labels.  We'll identify renderable by filtering on
     // the 'label'.
-    $elementNames = array();
+    $elementNames = [];
     foreach ($this->_elements as $element) {
       /** @var HTML_QuickForm_Element $element */
       $label = $element->getLabel();
