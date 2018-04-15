@@ -83,17 +83,20 @@ class CRM_Peer_Form_PeerPage extends CRM_Core_Form {
   public function buildQuickForm() {
 
     // Peer Campaign reference
-    // TODO - display a title of the campaign when selecting
     $this->addEntityRef('peer_campaign_id', E::ts('Peer Campaign'), [
       'entity' => 'PeerCampaign',
       'create' => FALSE,
-      'select' => array('minimumInputLength' => 0)
+      'select' => ['minimumInputLength' => 0],
+      'api' => [
+        'search_field' => 'target_entity_title',
+        'label_field' => 'target_entity_title',
+      ]
     ], TRUE);
 
     // Contact reference
     $this->addEntityRef('contact_id', E::ts('Contact'), [
       'create' => TRUE,
-      'api' => ['extra' => array('email')],
+      'api' => ['extra' => ['email']],
     ], TRUE);
 
     // Page title
