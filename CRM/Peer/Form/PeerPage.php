@@ -140,7 +140,19 @@ class CRM_Peer_Form_PeerPage extends CRM_Core_Form {
   }
 
   public function postProcess() {
-    $params = $this->controller->exportValues($this->_name);
+    $formValues = $this->controller->exportValues($this->_name);
+
+    $apiAction = ($this->_action == Action::DELETE) ? 'delete' : 'create';
+    $apiParams = [
+      'id' => !empty($this->id) ? $this->id : NULL,
+      'peer_campaign_id' => $formValues['peer_campaign_id'],
+      'contact_id' => $formValues['contact_id'],
+      'title' => $formValues['title'],
+      'body' => $formValues['body'],
+      'goal_amount' => $formValues['goal_amount'],
+    ];
+
+    $apiCall = civicrm_api3('PeerPage', $apiAction, $apiParams);
 
     parent::postProcess();
   }
